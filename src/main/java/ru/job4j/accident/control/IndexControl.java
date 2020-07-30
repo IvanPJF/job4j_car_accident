@@ -3,17 +3,20 @@ package ru.job4j.accident.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import ru.job4j.accident.service.AccidentService;
 
 @Controller
 public class IndexControl {
 
-    private static final List<String> USERS = List.of("Sarah Connor", "John Connor", "T-800");
+    private AccidentService service;
+
+    public IndexControl(AccidentService service) {
+        this.service = service;
+    }
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("users", USERS);
+        model.addAttribute("accidents", service.allAccident());
         return "index";
     }
 }

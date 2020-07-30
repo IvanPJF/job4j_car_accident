@@ -12,13 +12,25 @@
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center pt-5">
+        <h2>List of all accidents</h2>
+    </div>
+    <div class="row justify-content-md-center pt-5">
         <div class="col-md-auto">
             <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Address</th>
+                </tr>
+                </thead>
                 <tbody>
-                <c:forEach items="${users}" var="user">
+                <c:forEach items="${accidents}" var="accident">
                     <tr>
-                        <td><c:out value="${user}"/></td>
+                        <td><c:out value="${accident.name}"/></td>
+                        <td><c:out value="${accident.text}"/></td>
+                        <td><c:out value="${accident.address}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
