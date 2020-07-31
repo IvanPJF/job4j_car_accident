@@ -15,26 +15,39 @@
     <div class="row justify-content-md-center pt-5">
         <h2>List of all accidents</h2>
     </div>
+    <div class="row justify-content-md-end">
+        <div class="col-3">
+            <a href="<c:url value='/create'/>">Добавить инцидент</a>
+        </div>
+    </div>
     <div class="row justify-content-md-center pt-5">
         <div class="col-md-auto">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Text</th>
-                    <th scope="col">Address</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${accidents}" var="accident">
+            <form id="form" action="<c:url value='/edit'/>" method="get">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
                     <tr>
-                        <td><c:out value="${accident.name}"/></td>
-                        <td><c:out value="${accident.text}"/></td>
-                        <td><c:out value="${accident.address}"/></td>
+                        <th scope="col">Name</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">Address</th>
+                        <th></th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${accidents}" var="accident">
+                        <tr>
+                            <td><c:out value="${accident.name}"/></td>
+                            <td><c:out value="${accident.text}"/></td>
+                            <td><c:out value="${accident.address}"/></td>
+                            <td>
+                                <button form="form" class="btn btn-warning"
+                                        type="submit" name="id" value="<c:out value="${accident.id}"/>">edit
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>

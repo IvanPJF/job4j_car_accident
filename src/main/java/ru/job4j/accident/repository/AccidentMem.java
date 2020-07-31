@@ -5,26 +5,28 @@ import ru.job4j.accident.model.Accident;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
 
-    private Map<Integer, Accident> accidents = new HashMap<>();
-
-    public AccidentMem() {
-        fill();
-    }
-
-    private void fill() {
-        Accident a1 = new Accident(1, "Accident #1", "Text #1", "Street #1");
-        Accident a2 = new Accident(2, "Accident #2", "Text #2", "Street #2");
-        Accident a3 = new Accident(3, "Accident #3", "Text #3", "Street #3");
-        accidents.put(a1.getId(), a1);
-        accidents.put(a2.getId(), a2);
-        accidents.put(a3.getId(), a3);
-    }
+    private final Map<Integer, Accident> accidents = new HashMap<>();
+    private final AtomicInteger index = new AtomicInteger(1);
 
     public Map<Integer, Accident> getAccidents() {
         return accidents;
+    }
+
+    public void create(Accident accident) {
+        accident.setId(index.getAndIncrement());
+        accidents.put(accident.getId(), accident);
+    }
+
+    public void edit(Accident accident) {
+        accidents.replace(accident.getId(), accident);
+    }
+
+    public Accident findById(Accident accident) {
+        return accidents.get(accident.getId());
     }
 }

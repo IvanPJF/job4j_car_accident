@@ -18,4 +18,16 @@ public class AccidentService {
     public Collection<Accident> allAccident() {
         return repository.getAccidents().values();
     }
+
+    public void create(Accident accident) {
+        repository.create(accident);
+    }
+
+    public void edit(Accident accident) {
+        repository.edit(accident);
+    }
+
+    public Accident findById(Accident accident) {
+        return repository.findById(accident);
+    }
 }
