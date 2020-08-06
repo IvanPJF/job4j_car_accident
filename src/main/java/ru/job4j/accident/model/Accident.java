@@ -12,6 +12,8 @@ public class Accident {
 
     private String address;
 
+    private AccidentType type;
+
     public Accident(int id, String name, String text, String address) {
         this.id = id;
         this.name = name;
@@ -56,6 +58,14 @@ public class Accident {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
     }
 
     @Override

@@ -25,6 +25,19 @@
                            value="<c:out value="${accident.name}"/>"/>
                 </div>
                 <div class="form-group">
+                    <label for="type">Тип:</label>
+                    <select name="type.id" id="type" class="form-control">
+                        <c:forEach items="${types}" var="type">
+                            <c:if test="${type.id == accident.type.id}">
+                                <option value=${type.id} selected>${type.name}</option>
+                            </c:if>
+                            <c:if test="${type.id != accident.type.id}">
+                                <option value=${type.id}>${type.name}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="text">Описание:</label>
                     <input type="text" class="form-control" id="text" name="text"
                            value="<c:out value="${accident.text}"/>"/>

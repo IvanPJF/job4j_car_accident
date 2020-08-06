@@ -23,6 +23,14 @@
                     <input type="text" class="form-control" id="name" name="name"/>
                 </div>
                 <div class="form-group">
+                    <label for="type">Тип:</label>
+                    <select name="type.id" id="type" class="form-control">
+                        <c:forEach items="${types}" var="type">
+                            <option value=${type.id}>${type.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="text">Описание:</label>
                     <input type="text" class="form-control" id="text" name="text"/>
                 </div>
