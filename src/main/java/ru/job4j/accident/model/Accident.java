@@ -22,6 +22,10 @@ public class Accident {
     public Accident() {
     }
 
+    public Accident(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

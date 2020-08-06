@@ -17,9 +17,8 @@
     </div>
     <div class="row justify-content-center pt-5">
         <div class="col-auto">
-            <form action="<c:url value='/save-edit'/>" method="post">
-                <c:set value="${accident}" var="accident"/>
-                <input type="hidden" name="id" value="<c:out value="${accident.id}"/>"/>
+            <c:set value="${accident}" var="accident"/>
+            <form action="<c:url value='/save?id=${accident.id}'/>" method="post">
                 <div class="form-group">
                     <label for="name">Название:</label>
                     <input type="text" class="form-control" id="name" name="name"
