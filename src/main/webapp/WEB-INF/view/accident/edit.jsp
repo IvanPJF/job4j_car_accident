@@ -38,6 +38,19 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="rule">Статьи:</label>
+                    <select name="rIds" id="rule" class="form-control" multiple>
+                        <c:forEach items="${rules}" var="rule">
+                            <option value=${rule.id}
+                                    <c:forEach items="${accident.rules}" var="aRule">
+                                            <c:if test="${rule.id == aRule.id}">selected</c:if>
+                                    </c:forEach>>
+                                    ${rule.name}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="text">Описание:</label>
                     <input type="text" class="form-control" id="text" name="text"
                            value="<c:out value="${accident.text}"/>"/>

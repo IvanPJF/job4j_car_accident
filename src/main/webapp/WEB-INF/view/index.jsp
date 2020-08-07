@@ -30,6 +30,7 @@
                         <th scope="col">Text</th>
                         <th scope="col">Address</th>
                         <th scope="col">Тип</th>
+                        <th scope="col">Статьи</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -40,6 +41,11 @@
                             <td><c:out value="${accident.text}"/></td>
                             <td><c:out value="${accident.address}"/></td>
                             <td><c:out value="${accident.type.name}"/></td>
+                            <td>
+                                <c:forEach items="${accident.rules}" var="rule">
+                                    <c:out value="${rule.name}"/><br>
+                                </c:forEach>
+                            </td>
                             <td>
                                 <button form="form" class="btn btn-warning"
                                         type="submit" name="id" value="<c:out value="${accident.id}"/>">edit
