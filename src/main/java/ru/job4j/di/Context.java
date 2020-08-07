@@ -13,21 +13,27 @@ public class Context {
     public void reg(Class cl) {
         Constructor[] constructors = cl.getDeclaredConstructors();
         if (constructors.length > 1) {
-            throw new IllegalStateException("Class has multiple constructors : " + cl.getCanonicalName());
+            throw new IllegalStateException(
+                    "Class has multiple constructors : " + cl.getCanonicalName()
+            );
         }
         Constructor con = constructors[0];
         List<Object> args = new ArrayList<>();
         for (Class arg : con.getParameterTypes()) {
             String canonClassName = arg.getCanonicalName();
             if (!els.containsKey(canonClassName)) {
-                throw new IllegalStateException("Object doesn't found in context : " + arg.getCanonicalName());
+                throw new IllegalStateException(
+                        "Object doesn't found in context : " + arg.getCanonicalName()
+                );
             }
             args.add(els.get(canonClassName));
         }
         try {
             els.put(cl.getCanonicalName(), con.newInstance(args.toArray()));
         } catch (Exception ex) {
-            throw new IllegalStateException("Coun't create an instance of : " + cl.getCanonicalName(), ex);
+            throw new IllegalStateException(
+                    "Coun't create an instance of : " + cl.getCanonicalName(), ex
+            );
         }
     }
 
