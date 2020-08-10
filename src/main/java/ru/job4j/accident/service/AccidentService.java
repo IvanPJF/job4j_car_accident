@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -13,14 +13,14 @@ import java.util.Set;
 @Service
 public class AccidentService {
 
-    private AccidentMem repository;
+    private final AccidentJdbcTemplate repository;
 
-    public AccidentService(AccidentMem repository) {
+    public AccidentService(AccidentJdbcTemplate repository) {
         this.repository = repository;
     }
 
     public Collection<Accident> allAccident() {
-        return repository.getAccidents().values();
+        return repository.allAccidents();
     }
 
     public void save(Accident accident) {
