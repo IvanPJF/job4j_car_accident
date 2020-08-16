@@ -10,8 +10,8 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.*;
 
-@Repository
-@Transactional
+//@Repository
+//@Transactional
 public class AccidentHibernate {
 
     private final SessionFactory sf;

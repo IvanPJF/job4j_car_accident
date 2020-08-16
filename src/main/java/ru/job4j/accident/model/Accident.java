@@ -24,11 +24,11 @@ public class Accident {
     @Column(name = "address")
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "accident_type_id", unique = true)
     private AccidentType type;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "accident_rule",
             joinColumns = @JoinColumn(name = "accident_id", nullable = false, updatable = false),
