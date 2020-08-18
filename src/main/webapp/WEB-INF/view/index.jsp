@@ -12,7 +12,12 @@
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-md-center pt-5">
+    <div class="row justify-content-md-end pt-2">
+        <div class="col-3">
+            <a href="<c:url value='/logout'/>">Logout</a>
+        </div>
+    </div>
+    <div class="row justify-content-md-center pt-3">
         <h2>List of all accidents</h2>
     </div>
     <div class="row justify-content-md-end">
