@@ -5,60 +5,44 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentRepository;
-import ru.job4j.accident.repository.AccidentTypeRepository;
-import ru.job4j.accident.repository.RuleRepository;
 
 import java.util.*;
 
 @Service
 public class AccidentService {
 
-    private final AccidentRepository accidentRepository;
-    private final AccidentTypeRepository accidentTypeRepository;
-    private final RuleRepository ruleRepository;
+    private final AccidentRepository repository;
 
-    public AccidentService(AccidentRepository accidentRepository,
-                           AccidentTypeRepository accidentTypeRepository,
-                           RuleRepository ruleRepository) {
-        this.accidentRepository = accidentRepository;
-        this.accidentTypeRepository = accidentTypeRepository;
-        this.ruleRepository = ruleRepository;
+    public AccidentService(AccidentRepository repository) {
+        this.repository = repository;
     }
 
     public Collection<Accident> allAccident() {
-        List<Accident> accidents = new ArrayList<>();
-        accidentRepository.findAll().forEach(accidents::add);
-        return accidents;
+        return repository.allAccidents();
     }
 
     public void save(Accident accident) {
-        accidentRepository.save(accident);
+        repository.save(accident);
     }
 
     public Accident findById(Accident accident) {
-        return accidentRepository.findById(accident.getId()).orElse(null);
+        return repository.findById(accident.getId()).orElse(null);
     }
 
     public Collection<AccidentType> allAccidentTypes() {
-        List<AccidentType> types = new ArrayList<>();
-        accidentTypeRepository.findAll().forEach(types::add);
-        return types;
+        return repository.allAccidentTypes();
     }
 
     public AccidentType findAccidentTypeById(AccidentType type) {
-        return accidentTypeRepository.findById(type.getId()).orElse(null);
+        return repository.findAccidentTypeById(type.getId());
     }
 
     public Collection<Rule> allRules() {
-        List<Rule> rules = new ArrayList<>();
-        ruleRepository.findAll().forEach(rules::add);
-        return rules;
+        return repository.allRules();
     }
 
     public Set<Rule> findRulesByIds(String[] sIds) {
-        Set<Rule> rules = new HashSet<>();
-        ruleRepository.findAllById(() -> strIdsToIntList(sIds).iterator()).forEach(rules::add);
-        return rules;
+        return repository.findRulesByIds(strIdsToIntList(sIds));
     }
 
     private List<Integer> strIdsToIntList(String[] ids) {

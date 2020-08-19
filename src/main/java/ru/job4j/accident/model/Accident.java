@@ -7,8 +7,17 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(
+        name = Accident.ACCIDENT_ALL_FIELDS,
+        attributeNodes = {
+                @NamedAttributeNode("type"),
+                @NamedAttributeNode("rules")
+        }
+)
 @Table(name = "accident")
 public class Accident {
+
+    public static final String ACCIDENT_ALL_FIELDS = "accident.all.fields";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +33,11 @@ public class Accident {
     @Column(name = "address")
     private String address;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "accident_type_id", unique = true)
     private AccidentType type;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "accident_rule",
             joinColumns = @JoinColumn(name = "accident_id", nullable = false, updatable = false),
