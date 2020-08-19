@@ -14,6 +14,11 @@
 <div class="container">
     <div class="row justify-content-md-end pt-2">
         <div class="col-3">
+            Login as: <b>${user.username}</b>
+        </div>
+    </div>
+    <div class="row justify-content-md-end pt-2">
+        <div class="col-3">
             <a href="<c:url value='/logout'/>">Logout</a>
         </div>
     </div>

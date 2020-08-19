@@ -1,9 +1,12 @@
 package ru.job4j.accident.control;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.service.AccidentService;
+
+import java.util.Map;
 
 @Controller
 public class IndexControl {
@@ -16,7 +19,10 @@ public class IndexControl {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("accidents", service.allAccident());
+        model.addAllAttributes(Map.of(
+                "accidents", service.allAccident(),
+                "user", SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        ));
         return "index";
     }
 }
