@@ -8,20 +8,13 @@
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
+    <title>Registration</title>
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-center pt-2">
-        <c:if test="${not empty errorMessage}">
-            <div style="color:red; font-weight: bold; margin: 30px 0px;">
-                    ${errorMessage}
-            </div>
-        </c:if>
-    </div>
     <div class="row justify-content-center pt-3">
         <div class="col-auto">
-            <form name='login' action="<c:url value='/login'/>" method='POST'>
+            <form name='reg' action="<c:url value='/reg'/>" method='POST'>
                 <div class="form-group row">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username"/>
@@ -30,13 +23,9 @@
                     <label for="password">Password:</label>
                     <input type="password" class="form-control" id="password" name="password"/>
                 </div>
-                <div class="row">
-                    <a href="<c:url value='/reg'/>">Регистрация</a>
-                </div>
                 <div class="row pt-3">
-                    <input type="submit" name="submit" class="btn btn-success btn-block" value="login"/><br>
+                    <input type="submit" name="submit" class="btn btn-success btn-block" value="save"/><br>
                 </div>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
         </div>
     </div>
